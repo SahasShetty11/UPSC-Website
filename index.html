@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UPSC Prep | Antsoftware</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>UPSC Preparation Portal</h1>
+    <p>by Antsoftware | Founder: Adithya K.V | Country: India</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#subjects">Subjects</a></li>
+      <li><a href="#mocktest">Mock Test</a></li>
+      <li><a href="#mindmaps">Mind Maps</a></li>
+      <li><a href="#doubts">Ask Doubts</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+  </nav>
+
+  <!-- Subjects Section -->
+  <section id="subjects">
+    <h2>Subjects (Prelims + Mains)</h2>
+    <div class="subject-list">
+      <div class="subject">Polity</div>
+      <div class="subject">Economy</div>
+      <div class="subject">History</div>
+      <div class="subject">Geography</div>
+      <div class="subject">Environment</div>
+      <div class="subject">Current Affairs</div>
+      <div class="subject">Science & Tech</div>
+      <div class="subject">Ethics</div>
+      <div class="subject">Essay</div>
+    </div>
+  </section>
+
+  <!-- Mock Test Section -->
+  <section id="mocktest">
+    <h2>Prelims Mock Test</h2>
+    <button onclick="generateMockTest()">📝 New Test</button>
+    <div id="mock-container"></div>
+  </section>
+
+  <!-- Mind Maps -->
+  <section id="mindmaps">
+    <h2>Sample Mind Map</h2>
+    <div class="mindmap-container">
+      <img src="https://i.imgur.com/qN9o0gT.png" alt="Sample Mind Map"/>
+    </div>
+  </section>
+
+  <!-- AI Doubt Section -->
+  <section id="doubts">
+    <h2>AI-Based Doubt Clearing</h2>
+    <p>Ask any UPSC-related question below 👇</p>
+    <input type="text" id="user-question" placeholder="Type your doubt here..." />
+    <button onclick="mockAIResponse()">Ask AI</button>
+    <div id="ai-response"></div>
+  </section>
+
+  <!-- News Section -->
+  <section id="news">
+    <h2>🌍 Live Economic & UPSC News</h2>
+    <p>Coming Soon: Live integration with world economy, PIB, and stock updates.</p>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <h2>Pricing Plans</h2>
+    <div class="pricing-plan">
+      <h3>₹165 / Month</h3>
+      <p>✅ Unlimited Videos<br>🔒 Limited Mock Tests<br>🔒 20 Doubt-Questions/Day</p>
+    </div>
+    <div class="pricing-plan">
+      <h3>₹265 / Month</h3>
+      <p>✅ Unlimited Videos<br>✅ Unlimited Mock Tests<br>✅ Unlimited Doubt-Questions</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Antsoftware. Built by Adithya K.V | India 🇮🇳
+  </footer>
+
+  <script>
+    // Sample MCQ Questions
+    const mcqQuestions = [
+      {
+        question: "Which Article of the Constitution deals with Emergency provisions?",
+        options: ["Article 21", "Article 356", "Article 368", "Article 370"],
+        answer: 1
+      },
+      {
+        question: "What does GDP stand for?",
+        options: ["Gross Domestic Product", "Global Domestic Power", "General Data Protocol", "Great Democratic Policy"],
+        answer: 0
+      },
+      {
+        question: "Who was the first Governor-General of independent India?",
+        options: ["Lord Mountbatten", "Dr. Rajendra Prasad", "C. Rajagopalachari", "Jawaharlal Nehru"],
+        answer: 0
+      },
+      {
+        question: "Which of these rivers is NOT a tributary of the Ganga?",
+        options: ["Yamuna", "Son", "Mahanadi", "Gandak"],
+        answer: 2
+      },
+      {
+        question: "The 'Chipko Movement' was related to?",
+        options: ["Women Empowerment", "Forest Conservation", "Water Harvesting", "Anti-corruption"],
+        answer: 1
+      }
+    ];
+
+    function generateMockTest() {
+      const mockContainer = document.getElementById('mock-container');
+      mockContainer.innerHTML = '';
+      let used = [];
+
+      for (let i = 0; i < 5; i++) {
+        let index;
+        do {
+          index = Math.floor(Math.random() * mcqQuestions.length);
+        } while (used.includes(index));
+        used.push(index);
+
+        const q = mcqQuestions[index];
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.innerHTML = `
+          <strong>Q${i + 1}. ${q.question}</strong><br>
+          <label><input type="radio" name="q${i}" /> ${q.options[0]}</label><br>
+          <label><input type="radio" name="q${i}" /> ${q.options[1]}</label><br>
+          <label><input type="radio" name="q${i}" /> ${q.options[2]}</label><br>
+          <label><input type="radio" name="q${i}" /> ${q.options[3]}</label><br>
+        `;
+        mockContainer.appendChild(div);
+      }
+    }
+
+    function mockAIResponse() {
+      const question = document.getElementById("user-question").value;
+      const responseBox = document.getElementById("ai-response");
+
+      if (!question.trim()) {
+        responseBox.innerHTML = "❗ Please type a question first.";
+        return;
+      }
+
+      // Simulate AI delay
+      responseBox.innerHTML = "🤖 Thinking...";
+      setTimeout(() => {
+        responseBox.innerHTML = `<strong>Answer:</strong> Great question! This is a mock answer from the AI. You can later connect this to OpenAI's GPT API for live answers.`;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
